@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Register | QR Shield{% endblock %}
+{% block content %}
+<div class="auth-wrap"><form class="panel auth-card" method="post">
+  <div class="eyebrow">CREATE YOUR ACCOUNT</div><h1>Join QR Shield</h1><p class="muted">Save and review your QR security scans.</p>
+  <label>Username<input name="username" minlength="3" maxlength="80" required autocomplete="username"></label>
+  <label>Email address<input type="email" name="email" required autocomplete="email"></label>
+  <label>Password<input type="password" name="password" minlength="8" required autocomplete="new-password"><small>At least 8 characters.</small></label>
+  <button class="btn primary full" type="submit">Create account →</button>
+  <p class="form-foot">Already registered? <a href="{{ url_for('login') }}">Sign in</a></p>
+</form></div>
+{% endblock %}

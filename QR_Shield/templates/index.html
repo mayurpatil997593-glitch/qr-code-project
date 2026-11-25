@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}QR Shield | QR Security Analyzer{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> QR SECURITY INTELLIGENCE</div>
+    <h1>Scan smarter.<br><span>Stay protected.</span></h1>
+    <p>Decode QR codes and inspect embedded links before you visit them. QR Shield helps identify common warning signs with a clear security report.</p>
+    <div class="actions"><a class="btn primary" href="{{ url_for('register') }}">Get started →</a><a class="btn ghost" href="{{ url_for('login') }}">Sign in</a></div>
+    <div class="trust-line"><span>●</span> URL is analyzed without opening it</div>
+  </div>
+  <div class="hero-visual">
+    <div class="scanner-frame"><div class="scan-line"></div><div class="qr-art"><span>▦</span></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div></div>
+    <div class="floating-card"><span class="status-dot"></span><div><b>Analysis ready</b><small>Check before you click</small></div></div>
+  </div>
+</section>
+<section class="feature-grid">
+  <article class="feature"><div class="feature-icon">▦</div><h3>QR decoding</h3><p>Extract URLs and text from uploaded QR images.</p></article>
+  <article class="feature"><div class="feature-icon">⌕</div><h3>URL inspection</h3><p>Check common suspicious URL patterns locally.</p></article>
+  <article class="feature"><div class="feature-icon">◈</div><h3>Scan reports</h3><p>Keep your scan history and export PDF reports.</p></article>
+</section>
+{% endblock %}

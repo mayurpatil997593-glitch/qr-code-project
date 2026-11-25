@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Scan History | QR Shield{% endblock %}
+{% block content %}
+<div class="page-heading"><div><div class="eyebrow">YOUR ACTIVITY</div><h1>Scan history</h1><p class="muted">Your latest 100 QR code scans.</p></div><a class="btn primary" href="{{ url_for('scanner') }}">＋ New scan</a></div>
+<div class="panel table-panel">
+{% if scans %}<div class="table-scroll"><table><thead><tr><th>ID</th><th>Decoded content</th><th>Type</th><th>Verdict</th><th>Risk score</th><th>Date</th><th>Report</th></tr></thead><tbody>
+{% for s in scans %}<tr><td>#{{ s.id }}</td><td class="truncate">{{ s.decoded_content }}</td><td>{{ s.content_type }}</td><td><span class="pill {{ 'bad' if s.risk_score >= 60 else ('warn' if s.risk_score >= 25 else 'good') }}">{{ s.verdict }}</span></td><td>{{ s.risk_score }}/100</td><td>{{ s.created_at.strftime('%d %b %Y %H:%M') }}</td><td><a href="{{ url_for('report', scan_id=s.id) }}">PDF</a></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<div class="empty">Your scan history is empty.</div>{% endif %}
+</div>
+{% endblock %}

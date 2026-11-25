@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}QR Scanner | QR Shield{% endblock %}
+{% block content %}
+<div class="page-heading"><div><div class="eyebrow">QR INSPECTION LAB</div><h1>QR Code Scanner</h1><p class="muted">Upload a QR image. The decoded link will be analyzed, not opened.</p></div></div>
+<div class="scanner-layout">
+  <form class="panel upload-panel" method="post" enctype="multipart/form-data">
+    <div class="upload-symbol">▦</div><h2>Upload QR image</h2><p class="muted">PNG, JPG, JPEG, BMP or WEBP · Max 5 MB</p>
+    <label class="file-drop"><input type="file" name="qr_image" accept=".png,.jpg,.jpeg,.bmp,.webp" required><span>Choose an image from your device</span></label>
+    <button class="btn primary full" type="submit">Decode & analyze →</button>
+    <p class="small-note">For your privacy, the uploaded image is deleted from temporary storage after processing.</p>
+  </form>
+  <aside class="panel safety-panel"><div class="feature-icon">盾</div><h3>Safe scanning practice</h3><ul><li>Never open an unknown QR link just to test it.</li><li>A valid HTTPS certificate does not mean a site is safe.</li><li>Do not upload private or payment QR codes to services you do not trust.</li><li>Our score is an indicator, not a guarantee.</li></ul></aside>
+</div>
+{% if result %}
+<div class="panel result-panel">
+  <div class="result-top"><div><div class="eyebrow">ANALYSIS COMPLETE · SCAN #{{ result.scan_id }}</div><h2>Security assessment</h2></div><span class="pill {{ 'bad' if result.score >= 60 else ('warn' if result.score >= 25 else 'good') }}">{{ result.verdict }}</span></div>
+  <div class="score-row"><div><strong>{{ result.score }}</strong><span>/100 risk score</span></div><div class="score-track"><div style="width:{{ result.score }}%"></div></div></div>
+  <label>Decoded content</label><div class="decoded">{{ result.decoded }}</div>
+  <h3>Findings</h3><ul class="findings">{% for item in result.findings %}<li>{{ item }}</li>{% endfor %}</ul>
+  <a class="btn ghost" href="{{ url_for('report', scan_id=result.scan_id) }}">Download PDF report ↓</a>
+</div>
+{% endif %}
+{% endblock %}

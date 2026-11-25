@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Admin | QR Shield{% endblock %}
+{% block content %}
+<div class="page-heading"><div><div class="eyebrow">ADMINISTRATION</div><h1>Admin overview</h1><p class="muted">Registered users and recent scan activity.</p></div></div>
+<div class="panel table-panel"><h2>Users</h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead><tbody>{% for u in users %}<tr><td>{{ u.id }}</td><td>{{ u.username }}</td><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{{ u.created_at.strftime('%d %b %Y') }}</td></tr>{% endfor %}</tbody></table></div></div>
+<div class="panel table-panel"><h2>Recent scans</h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>User</th><th>Content</th><th>Verdict</th><th>Risk</th></tr></thead><tbody>{% for s in scans %}<tr><td>#{{ s.id }}</td><td>{{ s.username }}</td><td class="truncate">{{ s.decoded_content }}</td><td>{{ s.verdict }}</td><td>{{ s.risk_score }}/100</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}
